@@ -11,6 +11,6 @@ $list = @(
 
 Write-Host "[`n"
 foreach ($item in $list) {
-    Write-Host
+    #TODO Write-Host
 }
 Write-Host "`n]"
