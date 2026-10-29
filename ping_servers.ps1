@@ -1,25 +1,25 @@
 $servers = @(
-    "172.16.2.1",
-    "172.16.2.6",
-    "172.16.2.3",
-    "172.16.2.5",
-    "172.16.2.7",
-    "172.16.2.13",
-    "172.16.2.15",
-    "172.16.2.25"
+    @{IP = "172.16.2.1"; Name = "DataBase OLTP"; SID = "OPS2PRI2"},
+    @{IP = "172.16.2.6"; Name = "Kerio VPN, Web-servers"; SID = "N/A"},
+    @{IP = "172.16.2.3"; Name = "Web-server AutomaticWorkplace, JIRA"; SID = "N/A"},
+    @{IP = "172.16.2.5"; Name = "Standby Database OLTP"; SID = "OPS2SB3"},
+    @{IP = "172.16.2.7"; Name = "DataBase Warehouse"; SID = "OPSWH2"},
+    @{IP = "172.16.2.13"; Name = "DataBase Warehouse"; SID = "OPSWH2"},
+    @{IP = "172.16.2.15"; Name = "Standby Database OLTP"; SID = "OPS2SB3"},
+    @{IP = "172.16.2.25"; Name = "Test Stand"; SID = "N/A"}
 )
 
 Write-Host "=== Ping check servers OPS ===" -ForegroundColor Cyan
 Write-Host ""
 
 foreach ($server in $servers) {
-    $ping = Test-Connection -ComputerName $server -Count 1 -Quiet -ErrorAction SilentlyContinue
-    
+    $ping = Test-Connection -ComputerName $server.IP -Count 1 -Quiet -ErrorAction SilentlyContinue
+
     if ($ping) {
-        Write-Host "$server - Server available" -ForegroundColor Green
+        Write-Host "$($server.IP) - Server $($server.name) [SID: $($server.SID)] available" -ForegroundColor Green
     }
     else {
-        Write-Host "$server - Server unavailable" -ForegroundColor Red
+        Write-Host "$($server.IP) - Server $($server.name) [SID: $($server.SID)] unavailable" -ForegroundColor Red
     }
 }
 
