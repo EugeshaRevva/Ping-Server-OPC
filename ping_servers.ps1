@@ -1,3 +1,4 @@
+#idea - Вывод лога в txt
 #idea - Можно написать уникальный пингтестер, который будет считывать txt и создавать свой массив.
 $servers = @(
     @{IP = "172.16.2.1"; Name = "DataBase OLTP"; SID = "OPS2PRI2"},
@@ -18,10 +19,10 @@ do {
     $ping = Test-Connection -ComputerName $server.IP -Count 1 -Quiet -ErrorAction SilentlyContinue
 
     if ($ping) {
-        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name) [SID: $($server.SID)] available" -ForegroundColor Green
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name)`t | `t[SID: $($server.SID)] `tavailable" -ForegroundColor Green
     }
     else {
-        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name) [SID: $($server.SID)] unavailable" -ForegroundColor Red
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name)`t | `t[SID: $($server.SID)] `tunavailable" -ForegroundColor Red
     }
 }
 
