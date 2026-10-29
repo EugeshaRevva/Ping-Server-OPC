@@ -11,6 +11,9 @@ $list = @(
 
 Write-Host "[`n"
 foreach ($item in $list) {
-    #TODO Write-Host
+    Write-Host "`t{`n
+        `"IP`": `"$($item.IP)`",`n
+    `t},"
+
 }
 Write-Host "`n]"
