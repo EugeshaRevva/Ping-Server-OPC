@@ -9,17 +9,17 @@ $servers = @(
     @{IP = "172.16.2.25"; Name = "Test Stand"; SID = "N/A"}
 )
 
-Write-Host "=== Ping check servers OPS ===" -ForegroundColor Cyan
+Write-Host "`t=== Ping check servers OPS ===" -ForegroundColor Yellow
 Write-Host ""
 
 foreach ($server in $servers) {
     $ping = Test-Connection -ComputerName $server.IP -Count 1 -Quiet -ErrorAction SilentlyContinue
 
     if ($ping) {
-        Write-Host "$($server.IP) - Server $($server.name) [SID: $($server.SID)] available" -ForegroundColor Green
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name) [SID: $($server.SID)] available" -ForegroundColor Green
     }
     else {
-        Write-Host "$($server.IP) - Server $($server.name) [SID: $($server.SID)] unavailable" -ForegroundColor Red
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($server.IP) `t Server $($server.name) [SID: $($server.SID)] unavailable" -ForegroundColor Red
     }
 }
 
