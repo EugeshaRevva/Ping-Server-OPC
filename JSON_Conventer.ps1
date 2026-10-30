@@ -10,7 +10,7 @@ $list = @(
     @{IP = "172.16.2.25"; Name = "Test Stand"; SID = "N/A"}
 )
 
-$ConvertedJsonConfigure = $list | ForEach-Object {[PSCustomObject]$_} | ConvertTo-Json -Depth 10
+$ConvertedJsonConfigure = $list | ConvertTo-Json -Depth 10
 
 Write-Output $ConvertedJsonConfigure
 
