@@ -12,7 +12,9 @@ $list = @(
 Write-Host "[`n"
 foreach ($item in $list) {
     Write-Host "`t{`n
-        `"IP`": `"$($item.IP)`",`n
+    `t`"IP`": `"$($item.IP)`",`n"
+    Write-Host "`t`"Name`": `"$($item.Name)`",`n"
+    Write-Host "`t`"SID`": `"$($item.SID)`",`n
     `t},"
 
 }
