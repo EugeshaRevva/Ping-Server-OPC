@@ -1,4 +1,5 @@
 #Optimized JSON Converter
+#TODO - List check
 $list = @(
     @{IP = "172.16.2.1"; Name = "DataBase OLTP"; SID = "OPS2PRI2"},
     @{IP = "172.16.2.6"; Name = "Kerio VPN, Web-servers"; SID = "N/A"},
