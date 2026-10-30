@@ -1,9 +1,26 @@
 #task - Вывод лога в txt
+$configurationFileName = "Config.json"
+$serversConfigPath = Join-Path $PSScriptRoot $configurationFileName
 
-$ServersConfigPath = Join-Path $PSScriptRoot "Config.json"
+function Config-Initialization {
+    try {
+        Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
+        return Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
+    }
+    catch {
+        Write-Warning "Configuration file $($configurationFileName) is corrupted or has an valid .JSON format"
+    }
+    else {
+        Write-Warning "Configuration file $($configurationFileName) not found"
+    }
+    if () {
+        $generationProposal = Read-Host "Generate new default configuration file? [Y/N]"
+    }
 
-if (Test-Path $ServersConfigPath) {
-    $Servers = Get-Content -Raw -Path $ServersConfigPath | ConvertFrom-Json
+}
+
+if (Test-Path $serversConfigPath) {
+    $Servers = Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
 }
 else {
     Write-Host "Warning!" -ForegroundColor DarkYellow
