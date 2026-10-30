@@ -1,3 +1,4 @@
+#LEGACY - Bad code
 $list = @(
     @{IP = "172.16.2.1"; Name = "DataBase OLTP"; SID = "OPS2PRI2"},
     @{IP = "172.16.2.6"; Name = "Kerio VPN, Web-servers"; SID = "N/A"},
@@ -15,7 +16,7 @@ foreach ($item in $list) {
     `t`"IP`": `"$($item.IP)`",`n"
     Write-Host "`t`"Name`": `"$($item.Name)`",`n"
     Write-Host "`t`"SID`": `"$($item.SID)`",`n
-    `t},"
-
+    `t},"  #TODO - fix "}," on end of congf
 }
+
 Write-Host "`n]"
