@@ -13,8 +13,10 @@ function Config-Initialization {
     else {
         Write-Warning "Configuration file $($configurationFileName) not found"
     }
-    if () {
+    if ($Choice -notmatch "^[Yy]") {
         $generationProposal = Read-Host "Generate new default configuration file? [Y/N]"
+        Write-Error "No configuration"
+        Exit
     }
 
 }
