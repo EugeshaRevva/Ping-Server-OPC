@@ -18,7 +18,7 @@ function Config-Initialization {
         Write-Error "No configuration"
         Exit
     }
-    . (Join-Path $PSScriptRoot "JSON_Conventer.ps1") #
+    . (Join-Path $PSScriptRoot "JSON_Conventer.ps1")
 }
 
 if (Test-Path $serversConfigPath) {
