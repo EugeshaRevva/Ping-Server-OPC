@@ -1,4 +1,3 @@
-#task - Вывод лога в txt
 $configurationFileName = "Config.json"
 $serversConfigPath = Join-Path $PSScriptRoot $configurationFileName
 $LogFilePath = Join-Path $PSScriptRoot "ping_log.txt"
