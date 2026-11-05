@@ -3,22 +3,26 @@ $configurationFileName = "Config.json"
 $serversConfigPath = Join-Path $PSScriptRoot $configurationFileName
 
 function Config-Initialization {
-    try {
-        Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
-        return Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
+    if (Test-Path $serversConfigPath) {
+        try {
+            $Data = Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
+            Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
+            return $Data
+        } catch {
+            Write-Warning "Configuration file '$configurationFileName' is corrupted or has an valid .JSON format"
+        }
+        else {
+            Write-Warning "Configuration file '$configurationFileName not found"
     }
-    catch {
-        Write-Warning "Configuration file $($configurationFileName) is corrupted or has an valid .JSON format"
+
+    $Choice = Read-Host "Generate new default configuration file? [Y/N]"
+        if ($Choice -notmatch "^[Yy]") {
+            Write-Error "No configuration"
+            Exit
+        }
+        . (Join-Path $PSScriptRoot "JSON_Conventer.ps1")
     }
-    else {
-        Write-Warning "Configuration file $($configurationFileName) not found"
-    }
-    if ($Choice -notmatch "^[Yy]") {
-        $generationProposal = Read-Host "Generate new default configuration file? [Y/N]"
-        Write-Error "No configuration"
-        Exit
-    }
-    . (Join-Path $PSScriptRoot "JSON_Conventer.ps1")
+    
 }
 
 if (Test-Path $serversConfigPath) {
