@@ -2,7 +2,7 @@
 $configurationFileName = "Config.json"
 $serversConfigPath = Join-Path $PSScriptRoot $configurationFileName
 
-function Config-Initialization {
+function Config_Initialization {
     if (Test-Path $serversConfigPath) {
         try {
             Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
@@ -29,14 +29,7 @@ function Config-Initialization {
     }
     
 function Main {
-    if (Test-Path $serversConfigPath) {
-        $Servers = Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
-    }
-    else {
-        Write-Host "Warning!" -ForegroundColor DarkYellow
-        Write-Error "Configuration file not found."
-        Exit
-    }
+    $Servers = Config_Initialization
     
     do {
         Write-Host "`n"
@@ -44,13 +37,18 @@ function Main {
     
         foreach ($ServerHost in $Servers) {
         $ping = Test-Connection -ComputerName $ServerHost.IP -Count 1 -Quiet -ErrorAction SilentlyContinue
-    
+        
+        $timeStamp = Get-Date -Format 'HH:mm:ss'
+
         if ($ping) {
-            Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tavailable" -ForegroundColor Green
+            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tavailable" -ForegroundColor Green
         }
         else {
-            Write-Host "[$(Get-Date -Format 'HH:mm:ss')]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tunavailable" -ForegroundColor Red
+            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tunavailable" -ForegroundColor Red
         }
+        $LogLine = "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] IP: $($ServerHost.IP.PadRight(15)) | Server: $($ServerHost.name.PadRight(25)) | SID: $($ServerHost.SID.PadRight(10)) | Status: $StatusText"
+        Add-Content -Path $logFilePath -Value $LogLine -ErrorAction SilentlyContinue
+
     }
     
     Write-Host "`nWaiting for Input `n[Enter] - New Ping `n[Spacebar] - Close Program" -ForegroundColor DarkBlue
