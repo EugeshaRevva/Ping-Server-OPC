@@ -8,7 +8,7 @@ function Config-Initialization {
             Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
             return Get-Content -Raw -Path $serversConfigPath -ErrorAction Stop | ConvertFrom-Json
         } catch {
-            Write-Warning "Configuration file '$configurationFileName' is corrupted or has an valid .JSON format"
+            Write-Warning "Configuration file '$configurationFileName' is corrupted or has an invalid .JSON format"
         }
     }
     else {
