@@ -5,13 +5,13 @@ $serversConfigPath = Join-Path $PSScriptRoot $configurationFileName
 function Config-Initialization {
     if (Test-Path $serversConfigPath) {
         try {
-            $Data = Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
             Write-Host "Configuration File has loaded!" -ForegroundColor DarkGreen
-            return $Data
+            return Get-Content -Raw -Path $serversConfigPath -ErrorAction Stop | ConvertFrom-Json
         } catch {
             Write-Warning "Configuration file '$configurationFileName' is corrupted or has an valid .JSON format"
         }
-        else {
+    }
+    else {
             Write-Warning "Configuration file '$configurationFileName not found"
     }
 
@@ -20,10 +20,14 @@ function Config-Initialization {
             Write-Error "No configuration"
             Exit
         }
+        Write-Host "Running JSON Converter to restore config..." -ForegroundColor DarkCyan
         . (Join-Path $PSScriptRoot "JSON_Conventer.ps1")
+
+        if (Test-Path $serversConfigPath) {
+            return Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
+        }
     }
     
-}
 
 if (Test-Path $serversConfigPath) {
     $Servers = Get-Content -Raw -Path $serversConfigPath | ConvertFrom-Json
