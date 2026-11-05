@@ -42,12 +42,14 @@ function Main {
         $timeStamp = Get-Date -Format 'HH:mm:ss'
 
         if ($ping) {
-            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tavailable" -ForegroundColor Green
+            $statusText = "available"
+            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `t$statusText" -ForegroundColor Green
         }
         else {
-            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `tunavailable" -ForegroundColor Red
+            $statusText = "unavailable"
+            Write-Host "[$timeStamp]`t $($ServerHost.IP) `t Server $($ServerHost.name)`t | `t[SID: $($ServerHost.SID)] `t$statusText" -ForegroundColor Red
         }
-        $LogLine = "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] IP: $($ServerHost.IP.PadRight(15)) | Server: $($ServerHost.name.PadRight(25)) | SID: $($ServerHost.SID.PadRight(10)) | Status: $StatusText"
+        $LogLine = "[$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')] IP: $($ServerHost.IP.PadRight(15)) | Server: $($ServerHost.name.PadRight(25)) | SID: $($ServerHost.SID.PadRight(10)) | Status: $statusText"
         Add-Content -Path $logFilePath -Value $LogLine -ErrorAction SilentlyContinue
 
     }

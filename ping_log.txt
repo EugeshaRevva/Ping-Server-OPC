@@ -1,0 +1,16 @@
+[2026-11-05 12:30:06] IP: 172.16.2.1      | Server: DataBase OLTP             | SID: OPS2PRI2   | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.6      | Server: Kerio VPN, Web-servers    | SID: N/A        | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.3      | Server: Web-server AutomaticWorkplace, JIRA | SID: N/A        | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.5      | Server: Standby Database OLTP     | SID: OPS2SB3    | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.7      | Server: DataBase Warehouse        | SID: OPSWH2     | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.13     | Server: DataBase Warehouse        | SID: OPSWH2     | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.15     | Server: Standby Database OLTP     | SID: OPS2SB3    | Status: available
+[2026-11-05 12:30:06] IP: 172.16.2.25     | Server: Test Stand                | SID: N/A        | Status: available
+[2026-11-05 12:30:08] IP: 172.16.2.1      | Server: DataBase OLTP             | SID: OPS2PRI2   | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.6      | Server: Kerio VPN, Web-servers    | SID: N/A        | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.3      | Server: Web-server AutomaticWorkplace, JIRA | SID: N/A        | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.5      | Server: Standby Database OLTP     | SID: OPS2SB3    | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.7      | Server: DataBase Warehouse        | SID: OPSWH2     | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.13     | Server: DataBase Warehouse        | SID: OPSWH2     | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.15     | Server: Standby Database OLTP     | SID: OPS2SB3    | Status: available
+[2026-11-05 12:30:09] IP: 172.16.2.25     | Server: Test Stand                | SID: N/A        | Status: available
