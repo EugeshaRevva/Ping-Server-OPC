@@ -56,18 +56,18 @@ function Main {
     Write-Host "`nWaiting for Input `n[Enter] - New Ping `n[Spacebar] - Close Program" -ForegroundColor DarkBlue
     
     while ($true) {
-        $keyInfo = [Console]::ReadKey($true)   
-       
-        if ($keyInfo.Key -eq "Spacebar") {
-            Write-Host "Close Program..."
-            exit
+            $keyInfo = [Console]::ReadKey($true)   
+        
+            if ($keyInfo.Key -eq "Spacebar") {
+                Write-Host "Close Program..."
+                exit
+            }
+        
+            if ($keyInfo.Key -eq "Enter") {
+                Clear-Host
+                break
+            }
         }
-    
-        if ($keyInfo.Key -eq "Enter") {
-            Clear-Host
-            break
-        }
-    }
     } while ($true)
 }
 
